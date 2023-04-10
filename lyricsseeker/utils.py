@@ -12,7 +12,7 @@ def parse_time(format_str: str) -> int:
 def parse_lrc(text: str) -> List[Dict[str, Any]]:
     lyrics_data = list()
     time_pattern = re.compile(r'(\[\d+:\d+\.\d+])+(.*)')
-    for line in text.split():
+    for line in re.split(r'[\r\n]', text):
         matched = time_pattern.match(line)
         if matched is None:
             continue
