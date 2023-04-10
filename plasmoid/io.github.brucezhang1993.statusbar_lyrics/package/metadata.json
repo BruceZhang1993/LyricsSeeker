@@ -1,0 +1,23 @@
+{
+  "KPlugin": {
+    "Authors": [
+      {
+        "Email": "zttt183525594@gmail.com",
+        "Name": "Bruce Zhang"
+      }
+    ],
+    "Category": "Multimedia",
+    "Description": "A statusbar lyrics widget for Plasma",
+    "Icon": "emblem-music-symbolic",
+    "Id": "io.github.brucezhang1993.status_lyrics",
+    "Name": "StatusBar Lyrics",
+    "Name[zh]": "状态栏歌词",
+    "ServiceTypes": [
+      "Plasma/Applet"
+    ],
+    "Version": "1",
+    "Website": "https://github.com/BruceZhang1993/LyricsSeeker"
+  },
+  "X-Plasma-API": "declarativeappletscript",
+  "X-Plasma-MainScript": "ui/main.qml"
+}
