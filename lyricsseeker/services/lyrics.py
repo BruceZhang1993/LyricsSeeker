@@ -11,6 +11,7 @@ class LyricsService:
         self._providers: Dict[str, BaseProvider] = dict()
         self._load_providers()
         self._lyrics_cache = dict()
+        self._search_cache = dict()
 
     def _load_providers(self):
         self._providers[DummyProvider.id()] = DummyProvider()
@@ -29,8 +30,12 @@ class LyricsService:
         return [{'id': provider.id(), 'name': provider.name()} for provider in self._providers.values()]
 
     def search(self, provider_id: str, keyword: str) -> List[SearchResult]:
-        provider = self.get_provider(provider_id)
-        return provider.search(keyword)
+        data = self._search_cache.get(f'{provider_id}:{keyword}')
+        if data is None:
+            provider = self.get_provider(provider_id)
+            data = provider.search(keyword)
+            self._search_cache[f'{provider_id}:{keyword}'] = data
+        return data
 
     def full_lyrics(self, provider_id: str, id_: str) -> str:
         lrc = self._lyrics_cache.get(f'{provider_id}:{id_}')

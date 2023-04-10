@@ -37,6 +37,12 @@ class MprisInterface:
             return None
         return await self._player.get_metadata()
 
+    async def get_position(self) -> Optional[int]:
+        """ returns microseconds """
+        if self._player is None:
+            return None
+        return int((await self._player.get_position()) / 1000)
+
     @staticmethod
     def _get_variant_value_or_none(variant: Variant) -> Optional[Any]:
         if variant is None:
