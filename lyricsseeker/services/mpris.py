@@ -30,7 +30,9 @@ class MprisInterface:
             dbus_object = self._bus.get_proxy_object('org.freedesktop.DBus', '/org/freedesktop/DBus', introspection)
             dbus_interface = dbus_object.get_interface('org.freedesktop.DBus')
             player_names = list(filter(lambda s: 'org.mpris.MediaPlayer2' in s, await dbus_interface.call_list_names()))
-            return player_names[0] or None
+            if len(player_names) == 0:
+                return None
+            return player_names[0]
 
     async def get_metadata(self):
         if self._player is None:

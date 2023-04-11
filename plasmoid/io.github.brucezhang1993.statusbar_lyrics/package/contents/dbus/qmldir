@@ -1,3 +1,0 @@
-module DBus
-plugin DBus
-typeinfo plugins.qmltypes
